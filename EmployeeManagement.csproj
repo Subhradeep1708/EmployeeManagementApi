@@ -22,10 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BAL\Interfaces\" />
-    <Folder Include="BAL\Services\" />
-    <Folder Include="DAL\Interfaces\" />
-    <Folder Include="DAL\Repository\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
 
 </Project>
