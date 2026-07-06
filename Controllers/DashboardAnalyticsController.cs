@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeManagement.Controllers
 {
+
     [ApiController]
     [Route("api/[controller]")]
     public class AnalyticsController : ControllerBase

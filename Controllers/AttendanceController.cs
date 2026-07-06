@@ -1,9 +1,11 @@
 ﻿using EmployeeManagement.BAL.Interfaces;
 using EmployeeManagement.Models.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeManagement.Controllers
 {
+    
     [ApiController]
     [Route("api/[controller]")]
     public class AttendanceController : ControllerBase
