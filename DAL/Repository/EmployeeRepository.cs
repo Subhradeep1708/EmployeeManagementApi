@@ -327,5 +327,56 @@ AND EffectiveTo IS NULL;
                 throw;
             }
         }
+
+        public async Task<bool> DeleteEmployeeAsync(int employeeId)
+        {
+            using var connection = _context.CreateConnection();
+
+            connection.Open();
+
+            using var transaction = connection.BeginTransaction();
+
+            try
+            {
+                await connection.ExecuteAsync(
+                    @"DELETE FROM Attendance
+              WHERE EmployeeId=@EmployeeId;",
+                    new { EmployeeId = employeeId },
+                    transaction);
+
+                await connection.ExecuteAsync(
+                    @"DELETE FROM Performance
+              WHERE EmployeeId=@EmployeeId;",
+                    new { EmployeeId = employeeId },
+                    transaction);
+
+                await connection.ExecuteAsync(
+                    @"DELETE FROM SalaryHistory
+              WHERE EmployeeId=@EmployeeId;",
+                    new { EmployeeId = employeeId },
+                    transaction);
+
+                await connection.ExecuteAsync(
+                    @"DELETE FROM Users
+              WHERE EmployeeId=@EmployeeId;",
+                    new { EmployeeId = employeeId },
+                    transaction);
+
+                var rows = await connection.ExecuteAsync(
+                    @"DELETE FROM Employees
+              WHERE EmployeeId=@EmployeeId;",
+                    new { EmployeeId = employeeId },
+                    transaction);
+
+                transaction.Commit();
+
+                return rows > 0;
+            }
+            catch
+            {
+                transaction.Rollback();
+                throw;
+            }
+        }
     }
 }

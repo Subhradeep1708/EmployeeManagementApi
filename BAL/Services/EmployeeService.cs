@@ -32,5 +32,9 @@ namespace EmployeeManagement.BAL.Services
         {
             return await _repository.UpdateEmployeeAsync(employeeId, dto);
         }
+        public async Task<bool> DeleteEmployeeAsync(int employeeId)
+        {
+            return await _repository.DeleteEmployeeAsync(employeeId);
+        }
     }
 }

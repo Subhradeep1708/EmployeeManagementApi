@@ -250,11 +250,11 @@ namespace EmployeeManagement.BAL.Services
 
                         table.Header(header =>
                         {
-                            header.Cell().Element(CellStyle).Background(Colors.Blue.Lighten4).Text("Employee").Bold();
-                            header.Cell().Element(CellStyle).Background(Colors.Blue.Lighten4).Text("Department").Bold();
-                            header.Cell().Element(CellStyle).Background(Colors.Blue.Lighten4).Text("Date").Bold();
-                            header.Cell().Element(CellStyle).Background(Colors.Blue.Lighten4).Text("Status").Bold();
-                            header.Cell().Element(CellStyle).Background(Colors.Blue.Lighten4).Text("Check In").Bold();
+                            header.Cell().Element(CellStyle).Text("Employee").Bold();
+                            header.Cell().Element(CellStyle).Text("Department").Bold();
+                            header.Cell().Element(CellStyle).Text("Date").Bold();
+                            header.Cell().Element(CellStyle).Text("Status").Bold();
+                            header.Cell().Element(CellStyle).Text("Check In").Bold();
                         });
 
                         foreach (var item in attendance)

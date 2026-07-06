@@ -118,9 +118,7 @@ namespace EmployeeManagement.Controllers
       
         
         [HttpPut("update-employee/{id}")]
-        public async Task<ApiResponse<bool>> UpdateEmployee(
-    int id,
-    UpdateEmployeeDTO dto)
+        public async Task<ApiResponse<bool>> UpdateEmployee(int id, UpdateEmployeeDTO dto)
         {
             ApiResponse<bool> response = new()
             {
@@ -134,6 +132,33 @@ namespace EmployeeManagement.Controllers
                 response.Success = true;
                 response.Data = result;
                 response.Message = "Employee updated successfully.";
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Data = false;
+                response.StatusCode = 500;
+                response.Message = ex.Message;
+
+                return response;
+            }
+        }
+
+        [HttpDelete("delete-employee/{id}")]
+        public async Task<ApiResponse<bool>> DeleteEmployee(int id)
+        {
+            ApiResponse<bool> response = new()
+            {
+                StatusCode = 200
+            };
+
+            try
+            {
+                response.Data = await _service.DeleteEmployeeAsync(id);
+                response.Success = true;
+                response.Message = "Employee deleted successfully.";
 
                 return response;
             }
