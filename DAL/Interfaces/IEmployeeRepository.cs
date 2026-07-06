@@ -1,6 +1,12 @@
-﻿namespace EmployeeManagement.DAL.Interfaces
+﻿using EmployeeManagement.Models.DTOs;
+
+namespace EmployeeManagement.DAL.Interfaces
 {
     public interface IEmployeeRepository
     {
+        Task<PagedResponse<EmployeeListDTO>> GetEmployeesAsync(EmployeeListRequestDTO request);
+        Task<bool> CreateEmployeeAsync(CreateEmployeeDTO dto);
+        Task<EmployeeDetailsDTO?> GetEmployeeByIdAsync(int employeeId);
+        Task<bool> UpdateEmployeeAsync(int employeeId, UpdateEmployeeDTO dto);
     }
 }

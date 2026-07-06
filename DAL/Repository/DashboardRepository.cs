@@ -42,9 +42,26 @@ namespace EmployeeManagement.DAL.Repository
                     (SELECT IFNULL(SUM(NetSalary),0)
                      FROM SalaryHistory
                      WHERE EffectiveTo IS NULL) AS AnnualPayroll;
+
+                    SELECT
+                        d.DepartmentName,
+                        COUNT(e.EmployeeId) EmployeeCount
+                    FROM Departments d
+                    LEFT JOIN Employees e
+                    ON d.DepartmentId = e.DepartmentId
+                    GROUP BY d.DepartmentId,d.DepartmentName
+                    ORDER BY EmployeeCount DESC;
                 ";
 
-            return await connection.QueryFirstAsync<DashboardSummaryCardDTO>(sql);
+            using var multi = await connection.QueryMultipleAsync(sql);
+
+            var summary = await multi.ReadFirstAsync<DashboardSummaryCardDTO>();
+
+            summary.DepartmentBreakdown = (
+                await multi.ReadAsync<DepartmentBreakdownDto>()
+            ).ToList();
+
+            return summary;
         }
     }
 }

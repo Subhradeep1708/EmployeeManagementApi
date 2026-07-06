@@ -14,17 +14,18 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // CORS setup
-//builder.Services.AddCors(options=>
-//    options.AddPolicy("AllowReact",
-//        policy =>
-//        {
-//            policy
-//                 .WithOrigins("http://localhost:5173")
-//                 .AllowAnyHeader()
-//                 .AllowAnyMethod();
-//        }
-//    )
-//);
+builder.Services.AddCors(options =>
+    options.AddPolicy("AllowReact",
+        policy =>
+        {
+            policy
+                 .WithOrigins("http://localhost:5173")
+                 //.WithOrigins("*")
+                 .AllowAnyHeader()
+                 .AllowAnyMethod();
+        }
+    )
+);
 
 // connection string dbContexts added
 builder.Services.AddSingleton<DapperContext>();
@@ -41,7 +42,8 @@ builder.Services.AddDbContext<EmployeeManagementContext>(options =>
 //builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
-//builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
 //builder.Services.AddScoped<IAuthService, AuthService>();
 //builder.Services.AddScoped<IEmployeeService, EmployeeService>();
@@ -57,7 +59,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//app.UseCors("AllowReact");
+app.UseCors("AllowReact");
 
 app.UseHttpsRedirection();
 
