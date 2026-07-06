@@ -40,13 +40,16 @@ builder.Services.AddDbContext<EmployeeManagementContext>(options =>
 
 
 //builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+//builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IAttendanceRepository, AttendanceRepository>();
+builder.Services.AddScoped<IAttendanceService, AttendanceService>();
+builder.Services.AddScoped<IReportRepository, ReportRepository>();
+builder.Services.AddScoped<IReportService, ReportService>();
 
-//builder.Services.AddScoped<IAuthService, AuthService>();
-//builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
 
 

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.105.0" />
     <PackageReference Include="Dapper" Version="2.1.79" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.17">
@@ -18,11 +19,14 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0" />
+    <PackageReference Include="QuestPDF" Version="2026.7.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Helpers\" />
+    <Folder Include="Reports\Excel\" />
+    <Folder Include="Reports\Pdf\" />
   </ItemGroup>
 
 </Project>
